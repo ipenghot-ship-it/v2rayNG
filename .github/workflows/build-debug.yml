@@ -83,16 +83,16 @@ jobs:
         chmod 755 gradlew
         ./gradlew assembleDebug
 
-    - name: Upload arm64-v8a APK
+    - name: Upload playstore arm64-v8a APK
       uses: actions/upload-artifact@v7
       if: success()
       with:
-        name: v2rayng-speedtest-arm64-v8a
-        path: ${{ github.workspace }}/V2rayNG/app/build/outputs/apk/debug/*arm64-v8a*.apk
+        name: v2rayng-speedtest-playstore-arm64-v8a
+        path: ${{ github.workspace }}/V2rayNG/app/build/outputs/apk/playstore/debug/*arm64-v8a*.apk
 
-    - name: Upload universal APK
+    - name: Upload playstore universal APK
       uses: actions/upload-artifact@v7
       if: success()
       with:
-        name: v2rayng-speedtest-universal
-        path: ${{ github.workspace }}/V2rayNG/app/build/outputs/apk/debug/*universal*.apk
+        name: v2rayng-speedtest-playstore-universal
+        path: ${{ github.workspace }}/V2rayNG/app/build/outputs/apk/playstore/debug/*universal*.apk
