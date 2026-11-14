@@ -188,6 +188,7 @@ fun MainScreen(
                             MainMoreMenuAction.SortByTestResults -> onAction(MainAction.SortByTestResults)
                             MainMoreMenuAction.TestAll -> onAction(MainAction.TestAllServers)
                             MainMoreMenuAction.TestAllRealPing -> onAction(MainAction.TestRealAllServers)
+                            MainMoreMenuAction.SpeedTestAll -> onAction(MainAction.SpeedTestAll)
                             MainMoreMenuAction.UpdateSubscriptions -> onAction(MainAction.UpdateSubscriptions)
                         }
                     }
@@ -252,6 +253,7 @@ fun MainScreen(
                             onMoreServer = { guid, profile ->
                                 shareTarget = Triple(guid, profile, true)
                             },
+                            onSpeedTestServer = { guid -> onAction(MainAction.SpeedTestSingle(guid)) },
                             onRemoveServer = removeServer,
                             usageInfo = group.usageInfo,
                             groupTitle = group.remarks,

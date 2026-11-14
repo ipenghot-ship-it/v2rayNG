@@ -46,6 +46,7 @@ class RealPingWorkerService(
     private val context: Context,
     private val guids: List<String>,
     private val onlyTcp: Boolean = false,
+    private val measureSpeed: Boolean = false,
     private val onEvent: (RealPingEvent) -> Unit = {}
 ) {
     private val job = SupervisorJob()
@@ -62,9 +63,13 @@ class RealPingWorkerService(
             scope.launch {
                 runningCount.incrementAndGet()
                 try {
-                    val result = if (onlyTcp) startTcping(guid) else startRealPing(guid)
+                    val event = when {
+                        measureSpeed -> RealPingEvent.Result(guid, speedKb = startSpeedTest(guid), isSpeed = true)
+                        onlyTcp -> RealPingEvent.Result(guid, startTcping(guid))
+                        else -> RealPingEvent.Result(guid, startRealPing(guid))
+                    }
                     if (scope.isActive) {
-                        onEvent(RealPingEvent.Result(guid, result))
+                        onEvent(event)
                     }
                 } catch (_: Throwable) {
                     // ignore
@@ -130,6 +135,36 @@ class RealPingWorkerService(
         return RealPingExecutionLimiter.run(config.configType) {
             CoreNativeManager.measureOutboundDelay(configResult.content, SettingsManager.getDelayTestUrl())
         }
+    }
+
+    /**
+     * Measures the download speed of the configured speed test file through this server's
+     * outbound, in KB/s. The native measurement downloads the whole file and returns the
+     * elapsed milliseconds; the configured file size turns that into throughput.
+     *
+     * @return The speed in KB/s, or -1 if the test failed.
+     */
+    private fun startSpeedTest(guid: String): Long {
+        val retFailure = -1L
+
+        val config = MmkvManager.decodeServerConfig(guid) ?: return retFailure
+        val configResult = CoreConfigManager.getV2rayConfig4Speedtest(context, guid)
+        if (!configResult.status) {
+            return retFailure
+        }
+
+        val url = SettingsManager.getSpeedTestUrl()
+        val sizeMb = SettingsManager.getSpeedTestSizeMb()
+
+        val elapsedMs = RealPingExecutionLimiter.run(config.configType) {
+            CoreNativeManager.measureOutboundDelay(configResult.content, url)
+        }
+        if (elapsedMs < 0) {
+            return retFailure
+        }
+
+        // throughput = file size in KB / download time in seconds
+        return sizeMb.toLong() * 1024L * 1000L / elapsedMs
     }
 
     private fun startTcping(guid: String): Long {

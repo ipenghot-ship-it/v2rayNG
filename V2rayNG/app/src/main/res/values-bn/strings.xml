@@ -254,6 +254,8 @@
     <string name="title_pref_delay_test_url">প্রকৃত বিলম্ব পরীক্ষার URL</string>
     <string name="summary_pref_delay_test_url" translatable="false">URL</string>
     <string name="title_pref_real_ping_concurrency">একযোগে প্রকৃত বিলম্ব পরীক্ষা</string>
+    <string name="title_pref_speed_test_url">স্পিড টেস্ট URL</string>
+    <string name="title_pref_speed_test_size_mb">স্পিড টেস্ট ফাইলের আকার (MB)</string>
 
     <string name="title_pref_ip_api_url">বর্তমান সংযোগের তথ্য পরীক্ষার URL</string>
     <string name="summary_pref_ip_api_url" translatable="false">URL</string>
@@ -357,6 +359,8 @@
     <string name="title_sub_update">সাবস্ক্রিপশন আপডেট</string>
     <string name="title_ping_all_server">TCP বিলম্ব পরীক্ষা করুন (TCPing)</string>
     <string name="title_real_ping_all_server">প্রকৃত বিলম্ব পরীক্ষা করুন</string>
+    <string name="title_speed_test_all">ডাউনলোড গতি পরীক্ষা</string>
+    <string name="action_speed_test">স্পিড টেস্ট</string>
     <string name="title_user_asset_setting">অ্যাসেট ফাইল</string>
     <string name="title_sort_by_test_results">টেস্ট ফলাফল দ্বারা সাজানো</string>
     <string name="title_filter_config">কনফিগারেশন ফাইল ফিল্টার করুন</string>
@@ -413,6 +417,8 @@
     <string name="connection_test_testing_count">%dটি কনফিগারেশন পরীক্ষা করা হচ্ছে…</string>
     <string name="connection_test_available">সংযোগ সফল হয়েছে; সময় লেগেছে %1$s</string>
     <string name="server_test_delay_value">%1$d মিলিসেকেন্ড</string>
+    <string name="server_test_speed_mb_value">%1$d MB/s</string>
+    <string name="server_test_speed_kb_value">%1$d KB/s</string>
     <string name="connection_test_error">সংযোগ পরীক্ষা ব্যর্থ: %s</string>
     <string name="connection_test_fail">ইন্টারনেট উপলব্ধ নয়</string>
     <string name="connection_test_error_status_code">ত্রুটি কোড: #%d</string>

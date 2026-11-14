@@ -505,6 +505,35 @@ object MmkvManager {
     }
 
     /**
+     * Encodes the server download speed test result in kilobytes per second.
+     *
+     * @param guid The server GUID.
+     * @param testResult The test speed in KB/s.
+     */
+    fun encodeServerTestSpeedKb(guid: String, testResult: Long) {
+        if (guid.isBlank()) {
+            return
+        }
+        val aff = decodeServerAffiliationInfo(guid) ?: ServerAffiliationInfo()
+        aff.testSpeedKb = testResult
+        serverAffStorage.encode(guid, JsonUtil.toJson(aff))
+    }
+
+    /**
+     * Clears all test speed results.
+     *
+     * @param keys The list of server GUIDs.
+     */
+    fun clearAllTestSpeedResults(keys: List<String>?) {
+        keys?.forEach { key ->
+            decodeServerAffiliationInfo(key)?.let { aff ->
+                aff.testSpeedKb = 0
+                serverAffStorage.encode(key, JsonUtil.toJson(aff))
+            }
+        }
+    }
+
+    /**
      * Removes all server configurations.
      *
      * @return The number of server configurations removed.

@@ -83,6 +83,7 @@ fun GroupPagerPage(
     onEditServer: (String, ProfileItem) -> Unit,
     onShareServer: (String, ProfileItem) -> Unit,
     onMoreServer: (String, ProfileItem) -> Unit,
+    onSpeedTestServer: (String) -> Unit,
     onRemoveServer: (String, String) -> Unit,
     usageInfo: SubscriptionUsageInfo?,
     groupTitle: String,
@@ -99,6 +100,7 @@ fun GroupPagerPage(
         onEditServer,
         onShareServer,
         onMoreServer,
+        onSpeedTestServer,
         onRemoveServer,
     ) {
         ServerRowActions(
@@ -106,6 +108,7 @@ fun GroupPagerPage(
             edit = onEditServer,
             share = onShareServer,
             more = onMoreServer,
+            speedTest = onSpeedTestServer,
             remove = onRemoveServer,
         )
     }
@@ -160,6 +163,7 @@ private class ServerRowActions(
     val edit: (String, ProfileItem) -> Unit,
     val share: (String, ProfileItem) -> Unit,
     val more: (String, ProfileItem) -> Unit,
+    val speedTest: (String) -> Unit,
     val remove: (String, String) -> Unit,
 )
 
@@ -348,10 +352,18 @@ private fun ServerListItem(
     doubleColumnDisplay: Boolean,
     actions: ServerRowActions
 ) {
-    val testResult = if (row.testDelayMillis == 0L) {
-        ""
-    } else {
-        stringResource(R.string.server_test_delay_value, row.testDelayMillis)
+    val testResult = buildString {
+        if (row.testDelayMillis != 0L) {
+            append(stringResource(R.string.server_test_delay_value, row.testDelayMillis))
+        }
+        if (row.testSpeedKb > 0L) {
+            if (isNotEmpty()) append(" / ")
+            if (row.testSpeedKb >= 1024L) {
+                append(stringResource(R.string.server_test_speed_mb_value, row.testSpeedKb / 1024))
+            } else {
+                append(stringResource(R.string.server_test_speed_kb_value, row.testSpeedKb))
+            }
+        }
     }
     val selectedStateDescription = if (isSelected) {
         stringResource(R.string.acc_selected_server)
@@ -404,6 +416,13 @@ private fun ServerListItem(
                         )
                     }
                 } else {
+                    IconButton(onClick = { actions.speedTest(row.guid) }, Modifier.size(36.dp)) {
+                        Icon(
+                            painterResource(R.drawable.ic_flash_on_24dp),
+                            stringResource(R.string.action_speed_test),
+                            Modifier.size(24.dp)
+                        )
+                    }
                     IconButton(onClick = { actions.share(row.guid, row.profile) }, Modifier.size(36.dp)) {
                         Icon(
                             painterResource(R.drawable.ic_share_24dp),

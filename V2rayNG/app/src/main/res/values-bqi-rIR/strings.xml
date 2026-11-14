@@ -254,6 +254,8 @@
     <string name="title_pref_delay_test_url">نشۊوی اینترنتی آزمایش تئخیر واقعی</string>
     <string name="summary_pref_delay_test_url" translatable="false">URL</string>
     <string name="title_pref_real_ping_concurrency">تعداڌ هوم زمووی تست تئخیر واقعی</string>
+    <string name="title_pref_speed_test_url">آدرس تست سرعت</string>
+    <string name="title_pref_speed_test_size_mb">حجم فایل تست سرعت (مگابایت)</string>
 
     <string name="title_pref_ip_api_url">نشۊوی اینترنتی آزمایش دووسمندیا منپیز هیم سکویی</string>
     <string name="summary_pref_ip_api_url" translatable="false">URL</string>
@@ -357,6 +359,8 @@
     <string name="title_sub_update">ورۊ کردن اشتراک بونکۊ سکویی</string>
     <string name="title_ping_all_server">آزمایش تئخیر TCP (TCPing)</string>
     <string name="title_real_ping_all_server">آزمایش تئخیر واقعی</string>
+    <string name="title_speed_test_all">تست سرعت دانلود</string>
+    <string name="action_speed_test">تست سرعت</string>
     <string name="title_user_asset_setting">فایلا بونچک جوقرافیایی</string>
     <string name="title_sort_by_test_results">ترتیب و ری نتیجه یل پینگ</string>
     <string name="title_filter_config">فیلتر کردن کانفیگا</string>
@@ -413,6 +417,8 @@
     <string name="connection_test_testing_count">%d کانفیگ هونی آزمایش ابۊ…</string>
     <string name="connection_test_available">مووفق بی: منپیز %1$s تۊل کشی</string>
     <string name="server_test_delay_value">%1$d میلی‌سانیه</string>
+    <string name="server_test_speed_mb_value">%1$d مگابایت/ثانیه</string>
+    <string name="server_test_speed_kb_value">%1$d کیلوبایت/ثانیه</string>
     <string name="connection_test_error">منپیز و اینترنتن نجوست: %s</string>
     <string name="connection_test_fail">اینترنت من دسرس نؽ</string>
     <string name="connection_test_error_status_code">کود ختا: #%d</string>

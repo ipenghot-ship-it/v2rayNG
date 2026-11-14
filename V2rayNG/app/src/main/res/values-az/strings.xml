@@ -254,6 +254,8 @@
     <string name="title_pref_delay_test_url">Real gecikmə sınağı URL-i</string>
     <string name="summary_pref_delay_test_url" translatable="false">URL</string>
     <string name="title_pref_real_ping_concurrency">Eyni vaxtda aparılan real gecikmə sınaqları</string>
+    <string name="title_pref_speed_test_url">Sürət testi URL</string>
+    <string name="title_pref_speed_test_size_mb">Sürət testi fayl ölçüsü (MB)</string>
 
     <string name="title_pref_ip_api_url">Cari bağlantı məlumatı sınağı URL-i</string>
     <string name="summary_pref_ip_api_url" translatable="false">URL</string>
@@ -357,6 +359,8 @@
     <string name="title_sub_update">Abunəliyi yenilə</string>
     <string name="title_ping_all_server">TCP gecikmələrini sınaqdan keçir (TCPing)</string>
     <string name="title_real_ping_all_server">Real gecikmələri sınaqdan keçir</string>
+    <string name="title_speed_test_all">Yükləmə sürətini yoxlayın</string>
+    <string name="action_speed_test">Sürət testi</string>
     <string name="title_user_asset_setting">Resurs faylları</string>
     <string name="title_sort_by_test_results">Sınaq nəticələrinə görə çeşidlə</string>
     <string name="title_filter_config">Konfiqurasiyaları filtrdən keçir</string>
@@ -413,6 +417,8 @@
     <string name="connection_test_testing_count">%d konfiqurasiya yoxlanılır…</string>
     <string name="connection_test_available">Bağlantı %1$s ərzində uğurla quruldu</string>
     <string name="server_test_delay_value">%1$d ms</string>
+    <string name="server_test_speed_mb_value">%1$d MB/s</string>
+    <string name="server_test_speed_kb_value">%1$d KB/s</string>
     <string name="connection_test_error">Bağlantı sınağı uğursuz oldu: %s</string>
     <string name="connection_test_fail">İnternet əlçatmazdır</string>
     <string name="connection_test_error_status_code">Xəta kodu: #%d</string>

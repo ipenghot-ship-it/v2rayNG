@@ -110,6 +110,16 @@ class CoreTestService : Service() {
 
     private fun handleMeasureStart(message: TestServiceMessage, startId: Int, requestId: String) {
         LogUtil.i(AppConfig.TAG, "CoreTestService starting worker   subscription ${message.subscriptionId}")
+        NotificationHelper.updateNotification(
+            channelType = NotificationChannelType.CORE_TEST,
+            context = this,
+            title = getString(R.string.app_name),
+            content = if (message.measureSpeed) {
+                getString(R.string.title_speed_test_all)
+            } else {
+                getString(R.string.title_real_ping_all_server)
+            }
+        )
 
         val guidsList = when {
             message.serverGuids.isNotEmpty() -> message.serverGuids
@@ -123,6 +133,7 @@ class CoreTestService : Service() {
                 context = this,
                 guids = guidsList,
                 onlyTcp = message.onlyTcp,
+                measureSpeed = message.measureSpeed,
                 onEvent = { event ->
                     if (activeWorkers.containsKey(worker)) {
                         handleWorkerEvent(event, message, requestId) { activeWorkers.remove(worker) }
@@ -151,11 +162,15 @@ class CoreTestService : Service() {
             }
 
             is RealPingEvent.Result -> {
-                MmkvManager.encodeServerTestDelayMillis(event.guid, event.delayMillis)
+                if (event.isSpeed) {
+                    MmkvManager.encodeServerTestSpeedKb(event.guid, event.speedKb)
+                } else {
+                    MmkvManager.encodeServerTestDelayMillis(event.guid, event.delayMillis)
+                }
                 MessageHelper.sendMsg2UI(
                     this,
                     AppConfig.MSG_MEASURE_CONFIG_SUCCESS,
-                    RealPingResult(event.guid, event.delayMillis),
+                    RealPingResult(event.guid, event.delayMillis, event.speedKb, event.isSpeed),
                     requestId,
                 )
             }
