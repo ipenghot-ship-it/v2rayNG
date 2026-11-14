@@ -417,6 +417,8 @@
     <string name="server_test_delay_value">%1$d ms</string>
     <string name="server_test_speed_mb_value">%1$d MB/s</string>
     <string name="server_test_speed_kb_value">%1$d KB/s</string>
+    <string name="server_speed_test_failed">測速失敗</string>
+    <string name="server_speed_connect_failed">節點連不上</string>
     <string name="connection_test_error">連線測試失敗：%s</string>
     <string name="connection_test_fail">"無法使用網際網路"</string>
     <string name="connection_test_error_status_code">錯誤碼：#%d</string>

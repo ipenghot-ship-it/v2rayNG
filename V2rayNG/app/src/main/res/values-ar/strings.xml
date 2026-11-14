@@ -427,6 +427,8 @@
     <string name="server_test_delay_value">%1$d ملي ثانية</string>
     <string name="server_test_speed_mb_value">%1$d ميغابايت/ث</string>
     <string name="server_test_speed_kb_value">%1$d كيلوبايت/ث</string>
+    <string name="server_speed_test_failed">فشل اختبار السرعة</string>
+    <string name="server_speed_connect_failed">تعذر الاتصال بالعقدة</string>
     <string name="connection_test_error">فشل اختبار الاتصال: %s</string>
     <string name="connection_test_fail">الإنترنت غير متاح</string>
     <string name="connection_test_error_status_code">رمز الخطأ: #%d</string>

@@ -204,6 +204,14 @@ object AppConfig {
     const val MSG_MEASURE_CONFIG_NOTIFY = 73
     const val MSG_MEASURE_CONFIG_FINISH = 74
 
+    /**
+     * Encoded states carried in testSpeedKb for speed tests.
+     * A positive value is a successful measurement in KB/s; the sentinels below
+     * distinguish why a speed test produced no usable throughput.
+     */
+    const val SPEED_RESULT_CONNECT_FAILED = -1L
+    const val SPEED_RESULT_SPEED_FAILED = -2L
+
     const val MSG_SUB_UPDATE_START = 8
     const val MSG_SUB_UPDATE_CANCEL = 81
 

@@ -4,6 +4,7 @@ import android.content.Context
 import com.v2ray.ang.core.CoreConfigManager
 import com.v2ray.ang.core.CoreNativeManager
 import com.v2ray.ang.dto.RealPingEvent
+import com.v2ray.ang.AppConfig
 import com.v2ray.ang.enums.EConfigType
 import com.v2ray.ang.extension.isComplexType
 import com.v2ray.ang.extension.isNotNullEmpty
@@ -145,12 +146,30 @@ class RealPingWorkerService(
      * @return The speed in KB/s, or -1 if the test failed.
      */
     private suspend fun startSpeedTest(guid: String): Long {
-        val retFailure = -1L
+        val retFailure = AppConfig.SPEED_RESULT_SPEED_FAILED
 
-        val config = MmkvManager.decodeServerConfig(guid) ?: return retFailure
+        val config = MmkvManager.decodeServerConfig(guid) ?: return AppConfig.SPEED_RESULT_CONNECT_FAILED
+
+        // Pre-check reachability with a TCP handshake, mirroring the delay test, so a
+        // speed result can distinguish "node unreachable" from "download failed".
+        if (!config.configType.isComplexType()
+            && config.configType != EConfigType.HYSTERIA2
+            && config.configType != EConfigType.WIREGUARD
+            && config.alpn?.startsWith("h3") != true
+            && config.server.isNotNullEmpty()
+            && config.serverPort?.toIntOrNull() != null
+        ) {
+            val url = config.server.orEmpty()
+            val port = config.serverPort.orEmpty().toInt()
+            val tcpTime = SpeedtestManager.socketConnectTime(url, port, 1000)
+            if (tcpTime <= -1L) {
+                return AppConfig.SPEED_RESULT_CONNECT_FAILED
+            }
+        }
+
         val configResult = CoreConfigManager.getV2rayConfig4Speedtest(context, guid)
         if (!configResult.status) {
-            return retFailure
+            return AppConfig.SPEED_RESULT_CONNECT_FAILED
         }
 
         val url = SettingsManager.getSpeedTestUrl()

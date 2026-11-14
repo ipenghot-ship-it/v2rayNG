@@ -419,6 +419,8 @@
     <string name="server_test_delay_value">%1$d میلی‌سانیه</string>
     <string name="server_test_speed_mb_value">%1$d مگابایت/ثانیه</string>
     <string name="server_test_speed_kb_value">%1$d کیلوبایت/ثانیه</string>
+    <string name="server_speed_test_failed">آزمون سرعت ناموفق</string>
+    <string name="server_speed_connect_failed">گره در دسترس نیست</string>
     <string name="connection_test_error">منپیز و اینترنتن نجوست: %s</string>
     <string name="connection_test_fail">اینترنت من دسرس نؽ</string>
     <string name="connection_test_error_status_code">کود ختا: #%d</string>

@@ -419,6 +419,8 @@
     <string name="server_test_delay_value">%1$d মিলিসেকেন্ড</string>
     <string name="server_test_speed_mb_value">%1$d MB/s</string>
     <string name="server_test_speed_kb_value">%1$d KB/s</string>
+    <string name="server_speed_test_failed">গতি পরীক্ষা ব্যর্থ</string>
+    <string name="server_speed_connect_failed">নোড সংযোগ ব্যর্থ</string>
     <string name="connection_test_error">সংযোগ পরীক্ষা ব্যর্থ: %s</string>
     <string name="connection_test_fail">ইন্টারনেট উপলব্ধ নয়</string>
     <string name="connection_test_error_status_code">ত্রুটি কোড: #%d</string>

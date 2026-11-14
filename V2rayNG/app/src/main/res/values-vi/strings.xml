@@ -417,6 +417,8 @@
     <string name="server_test_delay_value">%1$d mili giây</string>
     <string name="server_test_speed_mb_value">%1$d MB/s</string>
     <string name="server_test_speed_kb_value">%1$d KB/s</string>
+    <string name="server_speed_test_failed">Kiểm tra tốc độ thất bại</string>
+    <string name="server_speed_connect_failed">Không kết nối được node</string>
     <string name="connection_test_error">Kiểm tra kết nối thất bại: %s</string>
     <string name="connection_test_fail">Không thể truy cập Internet</string>
     <string name="connection_test_error_status_code">Mã lỗi: #%d</string>

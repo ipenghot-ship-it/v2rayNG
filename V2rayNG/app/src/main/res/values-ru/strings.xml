@@ -423,6 +423,8 @@
     <string name="server_test_delay_value">%1$d мс</string>
     <string name="server_test_speed_mb_value">%1$d МБ/с</string>
     <string name="server_test_speed_kb_value">%1$d КБ/с</string>
+    <string name="server_speed_test_failed">Тест скорости не пройден</string>
+    <string name="server_speed_connect_failed">Узел недоступен</string>
     <string name="connection_test_error">Ошибка проверки соединения: %s</string>
     <string name="connection_test_fail">Интернет недоступен</string>
     <string name="connection_test_error_status_code">Код ошибки: #%d</string>

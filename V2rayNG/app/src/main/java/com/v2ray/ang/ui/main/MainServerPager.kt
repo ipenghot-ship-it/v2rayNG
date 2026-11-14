@@ -53,6 +53,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.v2ray.ang.AppConfig
 import com.v2ray.ang.R
 import com.v2ray.ang.dto.LocateTarget
 import com.v2ray.ang.dto.entities.ProfileItem
@@ -356,12 +357,22 @@ private fun ServerListItem(
         if (row.testDelayMillis != 0L) {
             append(stringResource(R.string.server_test_delay_value, row.testDelayMillis))
         }
-        if (row.testSpeedKb > 0L) {
-            if (isNotEmpty()) append(" / ")
-            if (row.testSpeedKb >= 1024L) {
-                append(stringResource(R.string.server_test_speed_mb_value, row.testSpeedKb / 1024))
-            } else {
-                append(stringResource(R.string.server_test_speed_kb_value, row.testSpeedKb))
+        when {
+            row.testSpeedKb > 0L -> {
+                if (isNotEmpty()) append(" / ")
+                if (row.testSpeedKb >= 1024L) {
+                    append(stringResource(R.string.server_test_speed_mb_value, row.testSpeedKb / 1024))
+                } else {
+                    append(stringResource(R.string.server_test_speed_kb_value, row.testSpeedKb))
+                }
+            }
+            row.testSpeedKb == AppConfig.SPEED_RESULT_CONNECT_FAILED -> {
+                if (isNotEmpty()) append(" / ")
+                append(stringResource(R.string.server_speed_connect_failed))
+            }
+            row.testSpeedKb == AppConfig.SPEED_RESULT_SPEED_FAILED -> {
+                if (isNotEmpty()) append(" / ")
+                append(stringResource(R.string.server_speed_test_failed))
             }
         }
     }
