@@ -144,7 +144,7 @@ class RealPingWorkerService(
      *
      * @return The speed in KB/s, or -1 if the test failed.
      */
-    private fun startSpeedTest(guid: String): Long {
+    private suspend fun startSpeedTest(guid: String): Long {
         val retFailure = -1L
 
         val config = MmkvManager.decodeServerConfig(guid) ?: return retFailure
