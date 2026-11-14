@@ -57,6 +57,8 @@ android {
         }
         create("playstore") {
             dimension = "distribution"
+            // 共存版：包名加 .speedtest 后缀，与正版 com.v2ray.ang 共存互不覆盖
+            applicationIdSuffix = ".speedtest"
             buildConfigField("String", "DISTRIBUTION", "\"Play Store\"")
         }
     }
