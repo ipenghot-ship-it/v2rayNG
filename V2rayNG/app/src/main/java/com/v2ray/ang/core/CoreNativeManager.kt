@@ -91,21 +91,21 @@ object CoreNativeManager {
      * byte count, so the caller derives speed from actual transferred bytes instead
      * of a manually-entered file size.
      *
+     * Native packs the result into a single int64 (gomobile drops functions returning
+     * custom structs): (bytes << 20) | elapsedMs on success; negative sentinels on
+     * failure (-1 = node unreachable, -2 = reachable but download interrupted).
+     *
      * @param config The configuration JSON string
      * @param testUrl The file URL to download
-     * @return Pair(bytes downloaded, elapsed milliseconds), or null if the node
-     *         could not be reached / the download produced no usable result
+     * @return The raw native int64: packed(bytes, elapsedMs) on success, or the
+     *         negative sentinel (-1 / -2) on failure
      */
-    fun measureOutboundThroughput(config: String, testUrl: String): Pair<Long, Long>? {
+    fun measureOutboundThroughput(config: String, testUrl: String): Long {
         return try {
-            val r = Libv2ray.measureOutboundThroughput(config, testUrl)
-            val bytes = r.bytes
-            val elapsedMs = r.elapsedMs
-            // Native encodes failures as elapsedMs == -1 (see SpeedResult doc).
-            if (elapsedMs < 0 || bytes <= 0) null else Pair(bytes, elapsedMs)
+            Libv2ray.measureOutboundThroughput(config, testUrl)
         } catch (e: Exception) {
             LogUtil.e(AppConfig.TAG, "Failed to measure outbound throughput", e)
-            null
+            AppConfig.SPEED_RESULT_CONNECT_FAILED
         }
     }
 

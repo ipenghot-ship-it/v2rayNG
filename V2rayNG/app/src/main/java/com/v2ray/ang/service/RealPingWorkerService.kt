@@ -174,11 +174,17 @@ class RealPingWorkerService(
 
         val url = SettingsManager.getSpeedTestUrl()
 
-        val result = RealPingExecutionLimiter.run(config.configType) {
+        val packed = RealPingExecutionLimiter.run(config.configType) {
             CoreNativeManager.measureOutboundThroughput(configResult.content, url)
-        } ?: return retFailure
+        }
+        // Native sentinels: -1 = node unreachable, -2 = reachable but download failed.
+        if (packed < 0) {
+            return packed
+        }
 
-        val (bytes, elapsedMs) = result
+        // Success encoding: (bytes << 20) | elapsedMs
+        val bytes = packed shr 20
+        val elapsedMs = packed and 0xFFFFF
         if (bytes <= 0 || elapsedMs <= 0) {
             return retFailure
         }
