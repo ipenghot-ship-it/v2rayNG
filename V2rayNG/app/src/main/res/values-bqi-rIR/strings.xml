@@ -255,7 +255,6 @@
     <string name="summary_pref_delay_test_url" translatable="false">URL</string>
     <string name="title_pref_real_ping_concurrency">تعداڌ هوم زمووی تست تئخیر واقعی</string>
     <string name="title_pref_speed_test_url">آدرس تست سرعت</string>
-    <string name="title_pref_speed_test_size_mb">حجم فایل تست سرعت (مگابایت)</string>
 
     <string name="title_pref_ip_api_url">نشۊوی اینترنتی آزمایش دووسمندیا منپیز هیم سکویی</string>
     <string name="summary_pref_ip_api_url" translatable="false">URL</string>

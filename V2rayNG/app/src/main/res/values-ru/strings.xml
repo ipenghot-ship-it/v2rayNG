@@ -255,7 +255,6 @@
     <string name="summary_pref_delay_test_url" translatable="false">URL</string>
     <string name="title_pref_real_ping_concurrency">Параллельные тесты реальной задержки</string>
     <string name="title_pref_speed_test_url">URL теста скорости</string>
-    <string name="title_pref_speed_test_size_mb">Размер файла для теста скорости (МБ)</string>
 
     <string name="title_pref_ip_api_url">Сервис проверки текущего соединения</string>
     <string name="summary_pref_ip_api_url" translatable="false">URL</string>

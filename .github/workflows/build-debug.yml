@@ -65,8 +65,8 @@ jobs:
     - name: Download libv2ray
       uses: robinraju/release-downloader@v1.13
       with:
-        repository: '2dust/AndroidLibXrayLite'
-        tag: ${{ env.CURRENT_TAG }}
+        repository: 'ipenghot-ship-it/AndroidLibXrayLite'
+        tag: 'speedtest'
         fileName: 'libv2ray.aar'
         out-file-path: V2rayNG/app/libs/
 

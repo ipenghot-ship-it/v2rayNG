@@ -180,7 +180,6 @@ fun SettingsScreen(
     var delayTestUrl by rememberMmkvString(AppConfig.PREF_DELAY_TEST_URL, "")
     var realPingConcurrency by rememberMmkvString(AppConfig.PREF_REAL_PING_CONCURRENCY, "16")
     var speedTestUrl by rememberMmkvString(AppConfig.PREF_SPEED_TEST_URL, "")
-    var speedTestSizeMb by rememberMmkvString(AppConfig.PREF_SPEED_TEST_SIZE_MB, AppConfig.DEFAULT_SPEED_TEST_SIZE_MB.toString())
     var ipApiUrl by rememberMmkvString(AppConfig.PREF_IP_API_URL, "")
 
     val isVpn = mode == VPN
@@ -668,12 +667,6 @@ fun SettingsScreen(
                     title = stringResource(R.string.title_pref_speed_test_url),
                     value = speedTestUrl,
                     onValueChanged = { speedTestUrl = it }
-                )
-                SettingsEditItem(
-                    title = stringResource(R.string.title_pref_speed_test_size_mb),
-                    value = speedTestSizeMb,
-                    keyboardNumber = true,
-                    onValueChanged = { speedTestSizeMb = it }
                 )
                 SettingsEditItem(
                     title = stringResource(R.string.title_pref_ip_api_url),

@@ -255,7 +255,6 @@
     <string name="summary_pref_delay_test_url" translatable="false">URL</string>
     <string name="title_pref_real_ping_concurrency">একযোগে প্রকৃত বিলম্ব পরীক্ষা</string>
     <string name="title_pref_speed_test_url">স্পিড টেস্ট URL</string>
-    <string name="title_pref_speed_test_size_mb">স্পিড টেস্ট ফাইলের আকার (MB)</string>
 
     <string name="title_pref_ip_api_url">বর্তমান সংযোগের তথ্য পরীক্ষার URL</string>
     <string name="summary_pref_ip_api_url" translatable="false">URL</string>

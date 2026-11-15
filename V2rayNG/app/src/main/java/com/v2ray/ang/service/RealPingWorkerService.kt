@@ -173,17 +173,18 @@ class RealPingWorkerService(
         }
 
         val url = SettingsManager.getSpeedTestUrl()
-        val sizeMb = SettingsManager.getSpeedTestSizeMb()
 
-        val elapsedMs = RealPingExecutionLimiter.run(config.configType) {
-            CoreNativeManager.measureOutboundDelay(configResult.content, url)
-        }
-        if (elapsedMs < 0) {
+        val result = RealPingExecutionLimiter.run(config.configType) {
+            CoreNativeManager.measureOutboundThroughput(configResult.content, url)
+        } ?: return retFailure
+
+        val (bytes, elapsedMs) = result
+        if (bytes <= 0 || elapsedMs <= 0) {
             return retFailure
         }
 
-        // throughput = file size in KB / download time in seconds
-        return sizeMb.toLong() * 1024L * 1000L / elapsedMs
+        // throughput = bytes downloaded / elapsed time, expressed in KB/s
+        return bytes * 1000L / elapsedMs / 1024L
     }
 
     private fun startTcping(guid: String): Long {

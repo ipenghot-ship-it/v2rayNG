@@ -398,17 +398,6 @@ object SettingsManager {
     }
 
     /**
-     * Get the expected size in MB of the speed test file.
-     * The native measurement returns total download time; the size turns it into throughput.
-     * @return The file size in MB, clamped to 1..2048.
-     */
-    fun getSpeedTestSizeMb(): Int {
-        val value = MmkvManager.decodeSettingsString(AppConfig.PREF_SPEED_TEST_SIZE_MB)?.toIntOrNull()
-            ?: AppConfig.DEFAULT_SPEED_TEST_SIZE_MB
-        return value.coerceIn(1, 2048)
-    }
-
-    /**
      * Retrieves the currently selected VPN interface address configuration.
      * This method reads the user's preference for VPN interface addressing and returns
      * the corresponding configuration containing IPv4 and IPv6 addresses.

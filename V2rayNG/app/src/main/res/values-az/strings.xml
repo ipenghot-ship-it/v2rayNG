@@ -255,7 +255,6 @@
     <string name="summary_pref_delay_test_url" translatable="false">URL</string>
     <string name="title_pref_real_ping_concurrency">Eyni vaxtda aparılan real gecikmə sınaqları</string>
     <string name="title_pref_speed_test_url">Sürət testi URL</string>
-    <string name="title_pref_speed_test_size_mb">Sürət testi fayl ölçüsü (MB)</string>
 
     <string name="title_pref_ip_api_url">Cari bağlantı məlumatı sınağı URL-i</string>
     <string name="summary_pref_ip_api_url" translatable="false">URL</string>

@@ -84,6 +84,32 @@ object CoreNativeManager {
     }
 
     /**
+     * Measure download throughput through a throwaway core built from config.
+     *
+     * Unlike [measureOutboundDelay] (a latency probe with a hard 12s budget), this
+     * downloads the whole file at testUrl with a long timeout and reports the real
+     * byte count, so the caller derives speed from actual transferred bytes instead
+     * of a manually-entered file size.
+     *
+     * @param config The configuration JSON string
+     * @param testUrl The file URL to download
+     * @return Pair(bytes downloaded, elapsed milliseconds), or null if the node
+     *         could not be reached / the download produced no usable result
+     */
+    fun measureOutboundThroughput(config: String, testUrl: String): Pair<Long, Long>? {
+        return try {
+            val r = Libv2ray.measureOutboundThroughput(config, testUrl)
+            val bytes = r.bytes
+            val elapsedMs = r.elapsedMs
+            // Native encodes failures as elapsedMs == -1 (see SpeedResult doc).
+            if (elapsedMs < 0 || bytes <= 0) null else Pair(bytes, elapsedMs)
+        } catch (e: Exception) {
+            LogUtil.e(AppConfig.TAG, "Failed to measure outbound throughput", e)
+            null
+        }
+    }
+
+    /**
      * Create a new core controller instance.
      *
      * @param handler The callback handler for core events

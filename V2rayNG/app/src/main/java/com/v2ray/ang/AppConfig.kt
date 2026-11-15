@@ -90,7 +90,6 @@ object AppConfig {
     const val PREF_AUTO_SORT_AFTER_TEST = "pref_auto_sort_after_test"
     const val PREF_REAL_PING_CONCURRENCY = "pref_real_ping_concurrency"
     const val PREF_SPEED_TEST_URL = "pref_speed_test_url"
-    const val PREF_SPEED_TEST_SIZE_MB = "pref_speed_test_size_mb"
 
     /** Cache keys. */
     const val CACHE_SUBSCRIPTION_ID = "cache_subscription_id"
@@ -139,7 +138,6 @@ object AppConfig {
     const val DELAY_TEST_URL = "https://www.gstatic.com/generate_204"
     const val DELAY_TEST_URL2 = "https://www.google.com/generate_204"
     const val DEFAULT_SPEED_TEST_URL = "https://cs.leeu.eu.org/50MB"
-    const val DEFAULT_SPEED_TEST_SIZE_MB = 50
     const val OBSERVATORY_LEAST_PING_INTERVAL = "3m"
     const val OBSERVATORY_LEAST_LOAD_INTERVAL = "5m"
     const val OBSERVATORY_LEAST_LOAD_METHOD = "HEAD"

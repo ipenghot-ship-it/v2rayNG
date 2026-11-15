@@ -255,7 +255,6 @@
     <string name="summary_pref_delay_test_url" translatable="false">URL</string>
     <string name="title_pref_real_ping_concurrency">同時執行的真實延遲測試數</string>
     <string name="title_pref_speed_test_url">測速地址</string>
-    <string name="title_pref_speed_test_size_mb">測速檔案大小 (MB)</string>
 
     <string name="title_pref_ip_api_url">目前連線資訊測試 URL</string>
     <string name="summary_pref_ip_api_url" translatable="false">URL</string>

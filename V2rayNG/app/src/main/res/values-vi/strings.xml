@@ -255,7 +255,6 @@
     <string name="summary_pref_delay_test_url" translatable="false">URL</string>
     <string name="title_pref_real_ping_concurrency">Số lượt kiểm tra độ trễ thực đồng thời</string>
     <string name="title_pref_speed_test_url">URL kiểm tra tốc độ</string>
-    <string name="title_pref_speed_test_size_mb">Kích thước tệp kiểm tra tốc độ (MB)</string>
 
     <string name="title_pref_ip_api_url">URL kiểm tra thông tin kết nối hiện tại</string>
     <string name="summary_pref_ip_api_url" translatable="false">URL</string>
